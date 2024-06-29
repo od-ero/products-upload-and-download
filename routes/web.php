@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SendMailController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,10 +11,10 @@ Route::get('/', function () {
 
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('products.preview_pdf');
 })->middleware(['auth', 'verified']) ->name('dashboard');
 
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -23,7 +24,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/batches/products/view/{id}', [ProductController::class, 'view_batch'])->name('product.view_batch'); 
     Route::get('/products/pdf/download/{id}', [ProductController::class, 'generatePDF'])->name('product.generatePDF'); 
     Route::get('/create/fpdf/download/{id}', [ProductController::class, 'createPDF'])->name('product.createPDF'); 
-   
+    Route::get('/send/mail/{id}', [ProductController::class, 'sendMailWithAttachment'])->name('product.sendMailWithAttachment');
 
 
 });

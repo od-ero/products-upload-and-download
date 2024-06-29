@@ -1,11 +1,11 @@
 <!-- ttt -->
 @extends('layouts.my_app')
 @section('subtitle')
-  Dashboard
+  view batches
 @endsection
 
 @section('contentheader_title')
-    Dashboard
+    view batches
 @endsection
 
 @section('content')
@@ -126,10 +126,15 @@
                                 </table>
                             </div>
                     </div>
-
-            <div class="mb-4">
+        <div class="row">
+        <div class="mb-4 col-auto">
                  <a href="/create/fpdf/download/{{$encoded_product_batch_id}}" class="btn btn-outline-success btn-sm" tabindex="-1" role="button">Preview As PDF</a>        
             </div>
+            <div class="mb-4 col-auto">
+                 <a href="/send/mail/{{$encoded_product_batch_id}}" class="btn btn-outline-secondary btn-sm" tabindex="-1" role="button">Email PDF</a>        
+            </div>
+        </div>
+           
 </div>
 <script>
                 function setUnitId(unitId) {

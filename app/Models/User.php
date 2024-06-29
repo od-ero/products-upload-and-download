@@ -19,6 +19,12 @@ class User extends Authenticatable implements MustVerifyEmail
      */
      use SoftDeletes;
 	protected $dates = ['deleted_at'];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
+    
     protected $fillable = [
         'name',
         'email',
